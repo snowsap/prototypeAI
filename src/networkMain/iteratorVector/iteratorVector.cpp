@@ -46,7 +46,7 @@ void iteratorVector<T>::setIteratorValue(const T& valueToSet) {
 }
 
 template<typename T>
-void iteratorVector<T>::changeValueByIndex(size_t index, const T& valueToSet) {
+void iteratorVector<T>::changeValueByIndex(size_t index, std::shared_ptr<T> valueToSet) {
 	this->value.at(index) = *valueToSet;
 }
 
