@@ -35,9 +35,13 @@ public:
 	/* change the value by an index */
 	void changeValueByIndex(size_t index, const T& valueToSet);
 	/* iterate through the changer */
+	void changerIterate();
 
+	/* return amount of Values*/
+	size_t getAmountOfValues();
 
-
+	/* resize the amount of values */
+	void resizeTheVector(size_t amountOfValue, T defaultValue);
 
 
 };

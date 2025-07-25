@@ -50,3 +50,17 @@ void iteratorVector<T>::changeValueByIndex(size_t index, const T& valueToSet) {
 	this->value.at(index) = *valueToSet;
 }
 
+template<typename T>
+void iteratorVector<T>::changerIterate() {
+	++this->getIterator;
+}
+
+template<typename T>
+size_t iteratorVector<T>::getAmountOfValues() {
+	return size_t(this->value.size());
+}
+
+template<typename T>
+void iteratorVector<T>::resizeTheVector(size_t amountOfValue, T defaultValue) {
+	this->value.resize(newValue, defaultValue);
+}
