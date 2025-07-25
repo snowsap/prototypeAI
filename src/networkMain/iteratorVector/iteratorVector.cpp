@@ -7,42 +7,46 @@ inline iteratorVector<T>::iteratorVector(size_t amountOfElements, T defaultValue
 
 template<typename T>
 void iteratorVector<T>::startGetIterator() {
+	this->index = this->value.begin()
 }
 
 template<typename T>
 void iteratorVector<T>::endGetIterator() {
+	this->value.end();
 }
 
 template<typename T>
 void iteratorVector<T>::getterIterate() {
+	++index;
 }
 
 template<typename T>
 std::shared_ptr<T> iteratorVector<T>::getIteratorValue() {
-	return std::shared_ptr<T>();
+	return std::make_shared<T>(this->getIterator);
 }
 
 template<typename T>
 std::shared_ptr<T> iteratorVector<T>::getValueByIndex(size_t index) {
-	return std::shared_ptr<T>();
+	return std::shared_ptr<T>(this->value.at(index));
 }
 
 template<typename T>
-std::shared_ptr<T> iteratorVector<T>::startChangerIterator() {
-	return std::shared_ptr<T>();
+void iteratorVector<T>::startChangerIterator() {
+	this->setIterator = this->value.begin();
 }
 
 template<typename T>
-std::shared_ptr<T> iteratorVector<T>::endChangerIterator() {
-	return std::shared_ptr<T>();
+void iteratorVector<T>::endChangerIterator() {
+	this->value.end();
 }
 
 template<typename T>
-void iteratorVector<T>::getIteratorValue(const T& valueToSet) {
-
+void iteratorVector<T>::setIteratorValue(const T& valueToSet) {
+	this->setIterator = *valueToSet;
 }
 
 template<typename T>
 void iteratorVector<T>::changeValueByIndex(size_t index, const T& valueToSet) {
+	this->value.at(index) = *valueToSet;
 }
 

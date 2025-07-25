@@ -6,6 +6,9 @@ class iteratorVector {
 
 private:
 	std::vector<T> value;
+	std::vector<T>::iterator getIterator;
+	std::vector<T>::iterator setIterator;
+
 	
 public:
 	/* */
@@ -23,12 +26,12 @@ public:
 	std::shared_ptr<T> getValueByIndex( size_t index );
 	
 	/* start the changer iterator */
-	std::shared_ptr<T> startChangerIterator();
+	void startChangerIterator();
 	/* reset the iterator to 0 */
-	std::shared_ptr<T> endChangerIterator();
+	void endChangerIterator();
 
 	/* change the iterater on the index you are on */
-	void getIteratorValue(const T &valueToSet);
+	void setIteratorValue(const T &valueToSet);
 	/* change the value by an index */
 	void changeValueByIndex(size_t index, const T& valueToSet);
 	/* iterate through the changer */
