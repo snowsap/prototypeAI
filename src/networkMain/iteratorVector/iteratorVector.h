@@ -13,7 +13,7 @@ private:
 public:
 	/* */
 	iteratorVector(size_t amountOfElements, T defaultValue);
-	/* start the iterator */
+	/*   the iterator */
 	void startGetIterator();
 	/* reset the iterator to 0 */
 	void endGetIterator();
@@ -30,10 +30,12 @@ public:
 	/* reset the iterator to 0 */
 	void endChangerIterator();
 
+	void setIteratorValue(const T& valueToSet);
+
 	/* change the iterater on the index you are on */
-	void setIteratorValue(const T &valueToSet);
+	void setIteratorValue(std::shared_ptr <T>valueToSet);
 	/* change the value by an index */
-	void changeValueByIndex(size_t index, const T& valueToSet);
+	void changeValueByIndex(size_t index, std::shared_ptr<T> valueToSet);
 	/* iterate through the changer */
 	void changerIterate();
 

@@ -1,7 +1,7 @@
 #include "node.h"
 
 node::node(size_t numberofWeights, double defaultValue) {
-	this->weightings.resizeTheVector(numberofWeights);
+	this->weightings.resizeTheVector(numberofWeights, defaultValue);
 }
 
 double node::getNodeValue() {
@@ -21,7 +21,7 @@ double node::getDesiredChange() {
 }
 
 void node::setNodeValue(double newValue) {
-	this->nodeValue = value;
+	this->nodeValue = newValue;
 }
 
 void node::setDesiredChange(double newValue) {

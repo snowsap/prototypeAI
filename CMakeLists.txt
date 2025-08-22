@@ -28,4 +28,13 @@ target_sources(
 	src/networkMain/networkMain.cpp
 	src/networkMain/networkMain.h
 
+	src/algorithms/activationFunction.cpp
+	src/algorithms/activationFunction.h
+
+	src/algorithms/propagation.cpp
+	src/algorithms/propagation.h
+
+	src/algorithms/backPropagation.cpp
+	src/algorithms/backPropagation.h
+
 )

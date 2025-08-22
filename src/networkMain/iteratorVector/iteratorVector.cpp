@@ -1,12 +1,12 @@
 #include "../prototypeAI/src/networkMain/iteratorVector/iteratorVector.h"
 
 template<typename T>
-inline iteratorVector<T>::iteratorVector(size_t amountOfElements, T defaultValue) {
+void iteratorVector<T>::iteratorVector(size_t amountOfElements, T defaultValue) {
 	this->value.resize(amountOfElements, defaultValue);
 }
 
 template<typename T>
-void iteratorVector<T>::startGetIterator() {
+void iteratorVector<T>::startGetIterator(); {
 	this->index = this->value.begin()
 }
 
@@ -17,7 +17,7 @@ void iteratorVector<T>::endGetIterator() {
 
 template<typename T>
 void iteratorVector<T>::getterIterate() {
-	++index;
+	++this->index;
 }
 
 template<typename T>
@@ -62,5 +62,5 @@ size_t iteratorVector<T>::getAmountOfValues() {
 
 template<typename T>
 void iteratorVector<T>::resizeTheVector(size_t amountOfValue, T defaultValue) {
-	this->value.resize(newValue, defaultValue);
+	this->value.resize(defaultValue, defaultValue);
 }

@@ -1,6 +1,7 @@
 #include "node.h"
 #include "networkMain.h"
 
+
 std::shared_ptr<iteratorVector<layer>> network::getAllLayers() {
 	return std::make_shared(this->layers);
 }

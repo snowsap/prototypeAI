@@ -1,7 +1,7 @@
 #include "layer.h"
 
-layer::layer(size_t numberOfNodes, double defaultValue) {
-	this->nodeVector.resizeTheVector(numberOfNodes, defaultValue);
+layer::layer(size_t numberOfNodes, std::shared_ptr <node> defaultValue) {
+	this->nodeVector.resizeTheVector(numberOfNodes, *defaultValue);
 }
 
 std::shared_ptr<iteratorVector<node>> layer::allNodes()

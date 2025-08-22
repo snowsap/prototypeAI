@@ -1,3 +1,4 @@
-#include "networkMain/networkMain.h"
+#include "/networkMain/networkMain.h"
+#pragma once
 
 double sigmoid(double inputValue);
