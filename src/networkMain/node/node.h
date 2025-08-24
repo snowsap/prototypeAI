@@ -1,12 +1,13 @@
 #include "../prototypeAI/src/networkMain/iteratorVector/iteratorVector.h"
 
+#pragma once
 
 class node {
 
 private: 
 	iteratorVector<double> weightings;
-	double nodeValue;
-	double desiredChange;
+	double nodeValue = 0;
+	double desiredChange = 0;
 
 public: 
 	/* set the default parameters
@@ -14,6 +15,7 @@ public:
 	/ @param defaultValue "the default Value to be assigned"
 	*/
 	node(size_t numberofWeights, double defaultValue);
+	node();
 	/* get the modes value */
 	double getNodeValue();
 	/* get the weights iterator */

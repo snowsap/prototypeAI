@@ -1,9 +1,14 @@
-#include "node.h"
+#include "node/node.h"
 #include "networkMain.h"
 
 
+network::network() {
+
+
+}
+
 std::shared_ptr<iteratorVector<layer>> network::getAllLayers() {
-	return std::make_shared(this->layers);
+	return std::make_shared<iteratorVector<layer>>(this->layers);
 }
 
 double network::getLearningRate() {

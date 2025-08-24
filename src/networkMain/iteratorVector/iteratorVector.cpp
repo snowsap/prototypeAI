@@ -1,13 +1,19 @@
-#include "../prototypeAI/src/networkMain/iteratorVector/iteratorVector.h"
+#include "iteratorVector.h"
 
 template<typename T>
-void iteratorVector<T>::iteratorVector(size_t amountOfElements, T defaultValue) {
+iteratorVector<T>::iteratorVector(size_t amountOfElements, T defaultValue) : value(defaultValue) {
 	this->value.resize(amountOfElements, defaultValue);
+
 }
 
 template<typename T>
-void iteratorVector<T>::startGetIterator(); {
-	this->index = this->value.begin()
+iteratorVector<T>::iteratorVector()
+{
+}
+
+template<typename T>
+void iteratorVector<T>::startGetIterator() {
+	this->getIterator = this->value.begin();
 }
 
 template<typename T>
@@ -17,7 +23,7 @@ void iteratorVector<T>::endGetIterator() {
 
 template<typename T>
 void iteratorVector<T>::getterIterate() {
-	++this->index;
+	++this->getIterator;
 }
 
 template<typename T>
@@ -27,7 +33,7 @@ std::shared_ptr<T> iteratorVector<T>::getIteratorValue() {
 
 template<typename T>
 std::shared_ptr<T> iteratorVector<T>::getValueByIndex(size_t index) {
-	return std::shared_ptr<T>(this->value.at(index));
+	return std::make_shared<T>(this->value.at(index));
 }
 
 template<typename T>
@@ -38,11 +44,6 @@ void iteratorVector<T>::startChangerIterator() {
 template<typename T>
 void iteratorVector<T>::endChangerIterator() {
 	this->value.end();
-}
-
-template<typename T>
-void iteratorVector<T>::setIteratorValue(const T& valueToSet) {
-	this->setIterator = *valueToSet;
 }
 
 template<typename T>

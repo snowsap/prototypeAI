@@ -1,4 +1,5 @@
 #include "../prototypeAI/src/networkMain/node/node.h"
+#pragma once
 
 class layer {
 private:

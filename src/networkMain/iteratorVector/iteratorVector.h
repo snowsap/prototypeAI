@@ -1,6 +1,10 @@
 #include "iostream"
 #include "vector"
 
+#pragma once
+
+
+
 template<typename T>
 class iteratorVector {
 
@@ -13,6 +17,7 @@ private:
 public:
 	/* */
 	iteratorVector(size_t amountOfElements, T defaultValue);
+	iteratorVector();
 	/*   the iterator */
 	void startGetIterator();
 	/* reset the iterator to 0 */
@@ -30,10 +35,6 @@ public:
 	/* reset the iterator to 0 */
 	void endChangerIterator();
 
-	void setIteratorValue(const T& valueToSet);
-
-	/* change the iterater on the index you are on */
-	void setIteratorValue(std::shared_ptr <T>valueToSet);
 	/* change the value by an index */
 	void changeValueByIndex(size_t index, std::shared_ptr<T> valueToSet);
 	/* iterate through the changer */

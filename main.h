@@ -1,1 +1,3 @@
-#include "propagation.h"
+#include "src/algorithms/propagation.h"
+
+#pragma once

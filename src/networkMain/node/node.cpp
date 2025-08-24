@@ -1,7 +1,11 @@
 #include "node.h"
 
 node::node(size_t numberofWeights, double defaultValue) {
-	this->weightings.resizeTheVector(numberofWeights, defaultValue);
+	this->weightings = iteratorVector<double>(numberofWeights, defaultValue);
+}
+
+node::node()
+{
 }
 
 double node::getNodeValue() {

@@ -9,13 +9,13 @@ int main(void) {
 	node inputLayerNode(0, 0);
 
 
-	layer inputLayer(2, std::make_shared<inputLayerNodeZero>);
+	layer inputLayer(2, std::make_shared<node>(inputLayerNode));
 	inputLayer.allNodes()->getValueByIndex(0)->setNodeValue(0);
 	inputLayer.allNodes()->getValueByIndex(1)->setNodeValue(1);
 
 
-	layer hiddenLayer(2, std::make_shared<hiddenNode>);
-	layer outputLayer(1, std::make_shared<hiddenNode>);
+	layer hiddenLayer(2, std::make_shared<node>(hiddenNode));
+	layer outputLayer(1, std::make_shared<node>(hiddenNode));
 
 	exampleNetwork.setLayer(std::make_shared<layer>(inputLayer), 0);
 	exampleNetwork.setLayer(std::make_shared<layer>(hiddenLayer), 1);
