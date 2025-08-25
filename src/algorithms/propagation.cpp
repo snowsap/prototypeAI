@@ -6,7 +6,7 @@ void propagate(std::shared_ptr<network> targetNetwork) {
 	layer *currentLayer;
 	layer *previousLayer;
 	double nodeValue;
-	uint64_t amountOfLayers = targetNetwork->getAllLayers()->getAmountOfValues();
+	size_t amountOfLayers = targetNetwork->getAllLayers()->getAmountOfValues();
 	uint64_t amountOfNodes;
 	uint64_t amountOfWeights;
 	node *currentNode;

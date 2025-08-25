@@ -34,7 +34,7 @@ public:
 
 	/* get the iterater on the index you are on */
 	std::shared_ptr<T> getIteratorValue() {
-		return std::make_shared<T>(this->getIterator);
+		return std::make_shared<T>(*this->getIterator);
 	};
 	/* get the value by an index */
 	std::shared_ptr<T> getValueByIndex( size_t index ) {
@@ -66,7 +66,7 @@ public:
 
 	/* resize the amount of values */
 	void resizeTheVector(size_t amountOfValue, T defaultValue) {
-		this->value.resize(defaultValue, defaultValue);
+		this->value.resize(amountOfValue, defaultValue);
 	};
 
 };
