@@ -6,7 +6,7 @@ int main(void) {
 	network exampleNetwork;
 
 	node hiddenNode(2, 0);
-	node inputLayerNode(0, 0);
+	node inputLayerNode(1, 0);
 
 
 	layer inputLayer(2, std::make_shared<node>(inputLayerNode));
@@ -16,6 +16,8 @@ int main(void) {
 
 	layer hiddenLayer(2, std::make_shared<node>(hiddenNode));
 	layer outputLayer(1, std::make_shared<node>(hiddenNode));
+
+	exampleNetwork.setAmountOfLayers(3, hiddenLayer);
 
 	exampleNetwork.setLayer(std::make_shared<layer>(inputLayer), 0);
 	exampleNetwork.setLayer(std::make_shared<layer>(hiddenLayer), 1);

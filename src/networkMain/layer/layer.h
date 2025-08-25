@@ -9,7 +9,8 @@ private:
 public:
 	
 	layer(size_t numOfNodes, std::shared_ptr<node> defaultValue);
-
+	layer();
+	
 	std::shared_ptr<iteratorVector<node>> allNodes();
 	/* returns the amount of nodes */
 	size_t amountOfNodes();
