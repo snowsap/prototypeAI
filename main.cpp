@@ -5,26 +5,29 @@
 int main(void) {
 	network exampleNetwork;
 
-	node hiddenNode(2, 0);
-	node inputLayerNode(1, 0);
+	std::shared_ptr<network> exampleNetworkPTR = std::make_shared<network>(exampleNetwork);
+;	node hiddenNode(2, 0.5);
+	node inputLayerNode(1, 0.5);
+
 
 
 	layer inputLayer(2, std::make_shared<node>(inputLayerNode));
-	inputLayer.allNodes()->getValueByIndex(0)->setNodeValue(0);
+	inputLayer.allNodes()->getValueByIndex(0)->setNodeValue(1);
 	inputLayer.allNodes()->getValueByIndex(1)->setNodeValue(1);
 
 
 	layer hiddenLayer(2, std::make_shared<node>(hiddenNode));
 	layer outputLayer(1, std::make_shared<node>(hiddenNode));
 
-	exampleNetwork.setAmountOfLayers(3, hiddenLayer);
+	exampleNetworkPTR->setAmountOfLayers(3, hiddenLayer);
 
-	exampleNetwork.setLayer(std::make_shared<layer>(inputLayer), 0);
-	exampleNetwork.setLayer(std::make_shared<layer>(hiddenLayer), 1);
-	exampleNetwork.setLayer(std::make_shared<layer>(outputLayer), 2);
+	exampleNetworkPTR->setLayer(std::make_shared<layer>(inputLayer), 0);
+	exampleNetworkPTR->setLayer(std::make_shared<layer>(hiddenLayer), 1);
+	exampleNetworkPTR->setLayer(std::make_shared<layer>(outputLayer), 2);
 
-	propagate(std::make_shared<network>(exampleNetwork));
+	propagate(exampleNetworkPTR);
 
+	std::cout << exampleNetworkPTR->getAllLayers()->getValueByIndex(2)->allNodes()->getValueByIndex(0)->getNodeValue();
 
 
 }

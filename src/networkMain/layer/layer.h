@@ -4,7 +4,7 @@
 class layer {
 private:
 	double bias;
-	iteratorVector<node> nodeVector;
+	std::shared_ptr<iteratorVector<node>> nodeVector;
 
 public:
 	

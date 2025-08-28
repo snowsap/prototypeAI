@@ -3,28 +3,28 @@
 
 void propagate(std::shared_ptr<network> targetNetwork) {
 	
-	layer *currentLayer;
-	layer *previousLayer;
+	std::shared_ptr<layer> currentLayer;
+	std::shared_ptr<layer> previousLayer;
 	double nodeValue;
 	size_t amountOfLayers = targetNetwork->getAllLayers()->getAmountOfValues();
 	uint64_t amountOfNodes;
 	uint64_t amountOfWeights;
-	node *currentNode;
+	std::shared_ptr<node> currentNode;
 
-	currentLayer = &(*targetNetwork->getAllLayers()->getValueByIndex(1));
-	previousLayer = &(*targetNetwork->getAllLayers()->getValueByIndex(0));
+	currentLayer = targetNetwork->getAllLayers()->getValueByIndex(1);
+	previousLayer = targetNetwork->getAllLayers()->getValueByIndex(0);
 
 	for (uint64_t a = 2; a < amountOfLayers; ++a) {
 
 		currentLayer->allNodes()->startGetIterator();
-		amountOfNodes = currentLayer->allNodes()->getValueByIndex(0)->getWeightAmount();
+		amountOfNodes = currentLayer->allNodes()->getAmountOfValues();
 
 		for (uint64_t b = 0; b < amountOfNodes; ++b) {
 
 			nodeValue = 0;
 
 			previousLayer->allNodes()->startGetIterator();
-			currentNode = &(*currentLayer->allNodes()->getIteratorValue());
+			currentNode = currentLayer->allNodes()->getIteratorValue();
 			currentNode->getWeights()->startGetIterator();
 			amountOfWeights = currentNode->getWeights()->getAmountOfValues();
 
@@ -44,7 +44,7 @@ void propagate(std::shared_ptr<network> targetNetwork) {
 			currentLayer->allNodes()->getterIterate();
 		}
 		previousLayer = currentLayer;
-		currentLayer = &(*targetNetwork->getAllLayers()->getValueByIndex(a));
+		currentLayer = targetNetwork->getAllLayers()->getValueByIndex(a);
 	}
 
 

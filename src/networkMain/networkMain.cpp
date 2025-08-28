@@ -7,7 +7,7 @@ network::network() {
 }
 
 std::shared_ptr<iteratorVector<layer>> network::getAllLayers() {
-	return std::make_shared<iteratorVector<layer>>(this->layers);
+	return std::shared_ptr<iteratorVector<layer>>(&this->layers, [](iteratorVector<layer>*) {});
 }
 
 double network::getLearningRate() {

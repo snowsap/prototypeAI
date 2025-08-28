@@ -4,16 +4,15 @@ node::node(size_t numberofWeights, double defaultValue) {
 	this->weightings = iteratorVector<double>(numberofWeights, defaultValue);
 }
 
-node::node()
-{
+node::node() {
 }
 
 double node::getNodeValue() {
-	return this->nodeValue;
+	return nodeValue;
 }
 
 std::shared_ptr<iteratorVector<double>> node::getWeights() {
-	return std::make_shared<iteratorVector<double>>(this->weightings);
+	return std::shared_ptr<iteratorVector<double>>(&this->weightings, [](iteratorVector<double>*) {});
 }
 
 size_t node::getWeightAmount() {
@@ -25,7 +24,7 @@ double node::getDesiredChange() {
 }
 
 void node::setNodeValue(double newValue) {
-	this->nodeValue = newValue;
+	nodeValue = newValue;
 }
 
 void node::setDesiredChange(double newValue) {
