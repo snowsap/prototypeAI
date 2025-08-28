@@ -1,7 +1,6 @@
 #include "propagation.h"
+#pragma once
 
-
-#include "propagation.h"
 
 void propagate(std::shared_ptr<network> targetNetwork) {
 
