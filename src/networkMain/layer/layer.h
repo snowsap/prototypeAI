@@ -3,12 +3,14 @@
 
 class layer {
 private:
-	double bias;
+	double bias = 0;
 	std::shared_ptr<iteratorVector<node>> nodeVector;
 
 public:
 	
+	layer(size_t numOfNodes, std::shared_ptr<node> defaultValue, double bias);
 	layer(size_t numOfNodes, std::shared_ptr<node> defaultValue);
+
 	layer();
 	
 	std::shared_ptr<iteratorVector<node>> allNodes();

@@ -11,15 +11,15 @@ int main(void) {
 
 
 
-	layer inputLayer(2, std::make_shared<node>(inputLayerNode));
+	layer inputLayer(2, std::make_shared<node>(inputLayerNode), 0);
 	inputLayer.allNodes()->getValueByIndex(0)->setNodeValue(1);
 	inputLayer.allNodes()->getValueByIndex(1)->setNodeValue(1);
 
 
-	layer hiddenLayer(2, std::make_shared<node>(hiddenNode));
-	layer outputLayer(1, std::make_shared<node>(hiddenNode));
+	layer hiddenLayer(2, std::make_shared<node>(hiddenNode), 0);
+	layer outputLayer(1, std::make_shared<node>(hiddenNode), 0);
 
-	exampleNetworkPTR->setAmountOfLayers(3, hiddenLayer);
+	exampleNetworkPTR->setAmountOfLayers(3, std::make_shared<layer>(hiddenLayer));
 
 	exampleNetworkPTR->setLayer(std::make_shared<layer>(inputLayer), 0);
 	exampleNetworkPTR->setLayer(std::make_shared<layer>(hiddenLayer), 1);

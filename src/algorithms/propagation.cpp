@@ -1,51 +1,52 @@
 #include "propagation.h"
 
 
+#include "propagation.h"
+
 void propagate(std::shared_ptr<network> targetNetwork) {
-	
-	std::shared_ptr<layer> currentLayer;
-	std::shared_ptr<layer> previousLayer;
-	double nodeValue;
-	size_t amountOfLayers = targetNetwork->getAllLayers()->getAmountOfValues();
-	uint64_t amountOfNodes;
-	uint64_t amountOfWeights;
-	std::shared_ptr<node> currentNode;
 
-	currentLayer = targetNetwork->getAllLayers()->getValueByIndex(1);
-	previousLayer = targetNetwork->getAllLayers()->getValueByIndex(0);
+    std::shared_ptr<layer> currentLayer;
+    std::shared_ptr<layer> previousLayer;
+    double nodeValue;
+    size_t amountOfLayers = targetNetwork->getAllLayers()->getAmountOfValues();
+    uint64_t amountOfNodes;
+    uint64_t amountOfWeights;
+    std::shared_ptr<node> currentNode;
 
-	for (uint64_t a = 2; a < amountOfLayers; ++a) {
+    currentLayer = targetNetwork->getAllLayers()->getValueByIndex(1);
+    previousLayer = targetNetwork->getAllLayers()->getValueByIndex(0);
 
-		currentLayer->allNodes()->startGetIterator();
-		amountOfNodes = currentLayer->allNodes()->getAmountOfValues();
+    for (uint64_t a = 1; a < amountOfLayers; ++a) {
 
-		for (uint64_t b = 0; b < amountOfNodes; ++b) {
+        currentLayer = targetNetwork->getAllLayers()->getValueByIndex(a);
+        previousLayer = targetNetwork->getAllLayers()->getValueByIndex(a - 1);
+        amountOfNodes = currentLayer->allNodes()->getAmountOfValues();
 
-			nodeValue = 0;
+        for (uint64_t b = 0; b < amountOfNodes; ++b) {
 
-			previousLayer->allNodes()->startGetIterator();
-			currentNode = currentLayer->allNodes()->getIteratorValue();
-			currentNode->getWeights()->startGetIterator();
-			amountOfWeights = currentNode->getWeights()->getAmountOfValues();
+            nodeValue = 0;
 
-			for (uint64_t c = 0; c < amountOfWeights; ++c) {
+            previousLayer->allNodes()->startGetIterator();
+            currentNode = currentLayer->allNodes()->getValueByIndex(b);
 
-				nodeValue += *currentNode->getWeights()->getIteratorValue() *
-							 previousLayer->allNodes()->getIteratorValue()->getNodeValue(); 
-				
-				currentNode->getWeights()->getterIterate();
-				previousLayer->allNodes()->getterIterate();
+            currentNode->getWeights()->startGetIterator();
+            amountOfWeights = currentNode->getWeights()->getAmountOfValues();
 
-			}
+            for (uint64_t c = 0; c < amountOfWeights; ++c) {
 
-			nodeValue = sigmoid(nodeValue + currentLayer->getBias());
+                nodeValue += *currentNode->getWeights()->getIteratorValue() *
+                    previousLayer->allNodes()->getIteratorValue()->getNodeValue();
 
-			currentLayer->allNodes()->getIteratorValue()->setNodeValue(nodeValue);
-			currentLayer->allNodes()->getterIterate();
-		}
-		previousLayer = currentLayer;
-		currentLayer = targetNetwork->getAllLayers()->getValueByIndex(a);
-	}
+                currentNode->getWeights()->getterIterate();
+                previousLayer->allNodes()->getterIterate();
+            }
 
+            nodeValue = sigmoid(nodeValue + currentLayer->getBias());
 
+            currentNode->setNodeValue(nodeValue);
+        }
+
+        previousLayer = currentLayer;
+        currentLayer = targetNetwork->getAllLayers()->getValueByIndex(a);
+    }
 }

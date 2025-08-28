@@ -18,7 +18,7 @@ double network::getLearningDeclineRate() {
 	return this->learningDeclineRate;
 }
 
-void network::setAmountOfLayers(size_t setAmountOfLayers, layer &defaultLayer) {
+void network::setAmountOfLayers(size_t setAmountOfLayers, std::shared_ptr<layer> defaultLayer) {
 	this->layers.resizeTheVector(setAmountOfLayers, defaultLayer);
 }
 

@@ -10,24 +10,24 @@ template<typename T>
 class iteratorVector {
 
 private:
-	std::shared_ptr<std::vector<T>> value;
-	std::vector<T>::iterator getIterator;
-	std::vector<T>::iterator setIterator;
-	size_t backUpIndexGet;
-	size_t backUpIndexSet;
+	std::shared_ptr<std::vector<std::shared_ptr<T>>> value;
+	typename std::vector<std::shared_ptr<T>>::iterator getIterator;
+	typename std::vector<std::shared_ptr<T>>::iterator setIterator;
+
 
 
 public:
-	iteratorVector(size_t amountOfElements, T defaultValue) {
-		value = std::make_shared<std::vector<T>>();
+	iteratorVector(size_t amountOfElements, std::shared_ptr<T> defaultValue) {
+		value = std::make_shared<std::vector<std::shared_ptr<T>>>();
 		value->resize(amountOfElements, defaultValue);
 		getIterator = value->begin();
 		setIterator = value->begin();
 
+
 	}
 
 	iteratorVector() {
-		value = std::make_shared<std::vector<T>>();
+		value = std::make_shared<std::vector<std::shared_ptr<T>>>();
 		getIterator = value->begin();
 		setIterator = value->begin();
 
@@ -36,12 +36,7 @@ public:
 
 	/* the iterator */
 	void startGetIterator() {
-		if (this->value->empty()) {
-			this->getIterator = this->value->end();
-		}
-		else {
-			this->getIterator = this->value->begin();
-		}
+		getIterator = value->begin();
 	}
 
 	/* iterate through the getter*/
@@ -51,13 +46,16 @@ public:
 
 	/* get the iterater on the index you are on */
 	std::shared_ptr<T> getIteratorValue() {
-		return std::shared_ptr<T>(&*this->getIterator, [](T*) {});
+		return *getIterator;
 	}
 
+	T& getIteratorValueRef() {
+		return *getIterator->get();
+	}
 
 	/* get the value by an index */
 	std::shared_ptr<T> getValueByIndex(size_t index) {
-		return std::shared_ptr<T>(&this->value->at(index), [](T*) {});
+		return value->at(index);
 	};
 
 	/* start the changer iterator */
@@ -68,11 +66,6 @@ public:
 
 	/* change the value by an index */
 	void changeValueByIndex(size_t index, std::shared_ptr<T> valueToSet) {
-		this->value->at(index) = *valueToSet;
-	};
-
-	/* change the value by an index */
-	void changeValueByIndex(size_t index, T &valueToSet) {
 		this->value->at(index) = valueToSet;
 	};
 
@@ -93,12 +86,17 @@ public:
 	};
 
 	/* resize the amount of values */
-	void resizeTheVector(size_t amountOfValue, T defaultValue) {
-		this->value->resize(amountOfValue, defaultValue);
-		this->getIterator = this->value->begin();
-		this->setIterator = this->value->begin();
-
+	void resizeTheVector(size_t amountOfValue, std::shared_ptr<T> defaultValue) {
+		value->clear();
+		value->reserve(amountOfValue);
+		for (size_t i = 0; i < amountOfValue; ++i) {
+			value->push_back(std::make_shared<T>(*defaultValue)); 
+		}
+		getIterator = value->begin();
+		setIterator = value->begin();
 	}
+
+
 
 
 };

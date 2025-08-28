@@ -1,8 +1,13 @@
 #include "layer.h"
 
-layer::layer(size_t numberOfNodes, std::shared_ptr <node> defaultValue) {
+layer::layer(size_t numOfNodes, std::shared_ptr<node> defaultValue, double bias) {
+	this->nodeVector = std::make_shared<iteratorVector<node>>(numOfNodes, defaultValue);
+	this->bias = bias;
+}
+
+layer::layer(size_t numOfNodes, std::shared_ptr <node> defaultValue) {
 	this->nodeVector = std::make_shared<iteratorVector<node>>();
-	this->nodeVector->resizeTheVector(numberOfNodes, *defaultValue);
+	this->nodeVector->resizeTheVector(numOfNodes, defaultValue);
 	this->bias = 0;
 }
 

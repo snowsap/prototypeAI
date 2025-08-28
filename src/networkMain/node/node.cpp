@@ -1,7 +1,7 @@
 #include "node.h"
 
 node::node(size_t numberofWeights, double defaultValue) {
-	this->weightings = iteratorVector<double>(numberofWeights, defaultValue);
+	this->weightings = iteratorVector<double>(numberofWeights, std::make_shared<double>(defaultValue));
 }
 
 node::node() {
@@ -32,6 +32,6 @@ void node::setDesiredChange(double newValue) {
 }
 
 void node::resize(size_t amountOfValues, double newValueDefault) {
-	this->weightings.resizeTheVector(amountOfValues, newValueDefault);
+	this->weightings.resizeTheVector(amountOfValues, std::make_shared<double>(newValueDefault));
 }
 
