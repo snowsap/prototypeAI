@@ -9,7 +9,7 @@ int main(void) {
 	std::shared_ptr<network> exampleNetworkPTR = std::make_shared<network>(exampleNetwork);
 
 ;	node hiddenNode(2, 0.5);
-	node inputLayerNode(1, 0.5);
+	node inputLayerNode(0, 0.5);
 
 
 	layer inputLayer(2, std::make_shared<node>(inputLayerNode), 0);

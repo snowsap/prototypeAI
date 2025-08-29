@@ -26,3 +26,9 @@ double layer::getBias() {
 void layer::changeBias(double newValue) {
 	this->bias = newValue;
 }
+
+void layer::defaultAllValues(std::shared_ptr<node> defaultValue) {
+	size_t amountOfValues = this->amountOfNodes();
+	iteratorVector<node> tempReplacement = iteratorVector<node> (amountOfValues, defaultValue);
+	this->allNodes() = std::make_shared<iteratorVector<node>>(tempReplacement);
+}

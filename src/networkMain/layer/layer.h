@@ -23,6 +23,8 @@ public:
 	*/
 	void changeBias(double newValue);
 
+	void defaultAllValues(std::shared_ptr<node> defaultValue);
+
 
 
 };
