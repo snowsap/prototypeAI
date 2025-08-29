@@ -45,7 +45,6 @@ void propagate(std::shared_ptr<network> targetNetwork) {
             currentNode->setNodeValue(nodeValue);
         }
 
-        previousLayer = currentLayer;
         currentLayer = targetNetwork->getAllLayers()->getValueByIndex(a);
     }
 }
